@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
+    <style>
+        /* Mobile logo styles with !important to ensure they take effect */
+        #mobile-logo {
+            height: 120px !important;
+            width: auto !important;
+            margin-top: 1rem !important;
+            display: block !important;
+        }
+        #mobile-menu .flex.justify-center {
+            padding-top: 2rem !important;
+            padding-bottom: 1.5rem !important;
+        }
+    </style>
+    <title>Jupiter Pies - Out of This World Pastries | Myrtle Beach</title>
+    <meta name="description" content="Jupiter Pies - Myrtle Beach's premier pastry destination featuring signature pies, fresh pastries, and out-of-this-world desserts. Experience heavenly flavors that are truly stellar.">
+    <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <style>
+        /* Header styling */
+        .header-container {
+            position: relative;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100px;
+            transition: all 0.3s ease;
+        }
+        
+        .header-expanded .header-container {
+            flex-direction: column;
+            height: auto;
+            padding: 1rem;
+        }
+        
+        .logo-container {
+            flex-shrink: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .header-expanded .logo-container {
+            margin-bottom: 1rem;
+        }
+        
+        /* Menu item image */
+        .menu-item-image {
+            width: 7rem;
+            height: 7rem;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            flex-shrink: 0;
+        }
+        
+        /* Mobile header logo styling */
+        @media (max-width: 768px) {
+            .logo-container img {
+                height: 120px !important;
+                margin-top: 10px !important;
+            }
+            .header-container {
+                height: 140px;
+            }
+        }
+        
+        /* Navigation items */
+        .nav-item {
+            position: relative;
+        }
+        
+        /* Dropdown menu */
+        .dropdown-menu {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%) translateY(-0.5rem);
+            margin-top: 0.5rem;
+            width: 16rem;
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            padding: 0.5rem 0;
+            z-index: 50;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-item:hover .dropdown-menu,
+        .nav-item:focus-within .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+        
+        /* Expanded header state */
+        .header-expanded {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+        
+        .header-expanded .logo-container {
+            margin-bottom: 1.5rem;
+        }
+        
+        .header-expanded .main-nav {
+            position: relative;
+            left: auto;
+            transform: none;
+            margin: 0 auto;
+        }
+        
+        /* Dropdown items */
+        .dropdown-item {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: #1f2937;
+            transition: background-color 0.2s ease;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+        
+        .dropdown-item:hover {
+            background-color: #fffbeb;
+        }
+        
+        .dropdown-item svg {
+            width: 1.25rem;
+            height: 1.25rem;
+            margin-right: 0.75rem;
+            color: #d97706;
+        }
+        
+        .dropdown-divider {
+            border-top: 1px solid #f3f4f6;
+            margin: 0.25rem 0;
+        }
+        
+        /* Navigation links */
+        .nav-link {
+            position: relative;
+            display: inline-block;
+            color: white;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: #f59e0b;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #f59e0b;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Chevron animation */
+        .chevron {
+            transition: transform 0.2s ease;
+        }
+        
+        .nav-item:hover .chevron {
+            transform: rotate(180deg);
+        }
+    </style>
+
+    <link href="./style.css" rel="stylesheet"/>
+    <link href="./css/custom.css" rel="stylesheet"/>
+    <link href="./css/header-fix.css" rel="stylesheet"/>
+</head>
+<body class="bg-[var(--background-color)] text-[var(--text-dark)]">
+<div class="relative flex size-full min-h-screen flex-col justify-between group/design-root overflow-x-hidden">
+
+    <header id="main-header" style="background-color: #FFFFFF !important; position: sticky; top: 0; z-index: 50; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);">
+        <div class="header-container">
+            <!-- Logo on the left -->
+            <div class="logo-container">
+                <h1 style="margin: 0;">
+                    <img src="./assets/images/jupiterslogo.png" alt="Jupiter Pies" style="height: 80px; width: auto; object-fit: contain;">
+                </h1>
+            </div>
+            
+            <!-- Navigation in the center -->
+            <nav class="main-nav hidden md:flex items-center">
+                <div class="flex space-x-8">
+                    <div class="nav-item">
+                        <a href="#" data-page-link="home" class="nav-link">
+                            Home
+                        </a>
+                    </div>
+                    
+                    <div class="nav-item">
+                        <a href="#" data-page-link="about" class="nav-link">
+                            About
+                        </a>
+                    </div>
+                    
+                    <div class="nav-item">
+                        <a href="#" data-page-link="contact" class="nav-link">
+                            Contact
+                        </a>
+                    </div>
+                    
+                    <div class="nav-item">
+                        <a href="#" data-page-link="menu" class="nav-link">
+                            Menu
+                        </a>
+                    </div>
+                    
+
+                    
+                    <div class="nav-item">
+                        <a href="#" data-page-link="gallery" class="nav-link">
+                            Gallery
+                        </a>
+                    </div>
+                </div>
+            </nav>
+            
+            <!-- Cart and mobile menu -->
+            <div class="flex items-center space-x-6">
+                <a href="#" data-page-link="order" class="relative">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white hover:text-yellow-400 transition-colors duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                    <span id="cart-count" class="absolute -top-2 -right-2 bg-yellow-400 text-black rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold">0</span>
+                </a>
+                <button id="mobile-menu-button" class="md:hidden text-white p-1 hover:bg-gray-800 rounded-md transition-colors duration-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content" class="flex-grow">
+        <!-- Hero Section with Logo -->
+        <section class="hero-section relative h-[60vh] min-h-[400px] flex items-center justify-center bg-gray-100 overflow-hidden">
+            <div class="absolute inset-0 bg-black/40 z-10"></div>
+            <img src="./assets/images/hero.jpg" alt="Jupiter Pies" class="absolute inset-0 w-full h-full object-cover">
+            <div class="relative z-20 text-center px-4">
+                <h2 class="text-6xl md:text-7xl lg:text-8xl font-black text-white mb-6 tracking-tight leading-none" style="font-family: 'Montserrat', sans-serif; text-shadow: 3px 3px 6px rgba(0,0,0,0.7), 0 0 20px rgba(255,255,255,0.1);">JUPITER PIES</h2>
+                <p class="text-2xl md:text-3xl text-yellow-400 mb-8 font-bold tracking-wide" style="font-family: 'Montserrat', sans-serif; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);">Out of This World Pastries</p>
+                <p class="text-lg md:text-xl text-gray-100 mb-10 max-w-3xl mx-auto px-4 leading-relaxed font-medium" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.8);">Discover heavenly flavors at Myrtle Beach's premier pastry destination. Our signature pies and fresh pastries are crafted daily with stellar ingredients for a truly otherworldly experience.</p>
+                <a href="#" data-page-link="menu" class="bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-400 hover:to-orange-400 text-black font-bold py-4 px-10 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-2xl text-lg uppercase tracking-wide" style="font-family: 'Montserrat', sans-serif; box-shadow: 0 8px 25px rgba(255, 193, 7, 0.4);">View Our Menu</a>
+            </div>
+        </section>
+        
+        <!-- Featured Categories -->
+        <section class="py-16 bg-black">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-black text-center mb-12 text-white">OUR SPECIALTIES</h2>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="text-center p-8 bg-gray-900 rounded-xl shadow-lg hover:shadow-yellow-500/20 transition-all duration-300 border border-gray-800">
+                        <div class="w-24 h-24 bg-yellow-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <span class="text-4xl">☕</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4 text-yellow-400">Brazilian Coffee</h3>
+                        <p class="text-gray-300">Savor our signature Brazilian coffee blends, roasted to perfection and brewed fresh daily. Try our famous cafezinho!</p>
+                    </div>
+                    <div class="text-center p-8 bg-gray-900 rounded-xl shadow-lg hover:shadow-yellow-500/20 transition-all duration-300 border border-gray-800">
+                        <div class="w-24 h-24 bg-yellow-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <span class="text-4xl">🥖</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4 text-yellow-400">Fresh Bakery</h3>
+                        <p class="text-gray-300">Indulge in our daily-baked pão de queijo, brigadeiros, and other Brazilian favorites made with traditional recipes.</p>
+                    </div>
+                    <div class="text-center p-8 bg-gray-900 rounded-xl shadow-lg hover:shadow-yellow-500/20 transition-all duration-300 border border-gray-800">
+                        <div class="w-24 h-24 bg-yellow-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <span class="text-4xl">🛒</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4 text-yellow-400">Market</h3>
+                        <p class="text-gray-300">Discover authentic Brazilian ingredients, from feijoada kits to guaraná, to bring the taste of Brazil to your home.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- A Taste of Brazil Section -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                        <h2 class="text-3xl font-black mb-6 text-gray-900">JUPITER'S PIES: OUT OF THIS WORLD PASTRIES</h2>
+                        <p class="text-lg text-gray-700 mb-6">Discover heavenly flavors at Jupiter's Pies, Myrtle Beach's premier pastry destination. Our stellar collection of handcrafted pies and fresh pastries delivers an otherworldly experience with every bite.</p>
+                        <p class="text-lg text-gray-700 mb-8">From classic apple pies to decadent chocolate croissants, every creation is made with love and the finest ingredients to deliver flavors that are truly out of this world.</p>
+                        <a href="#" data-page-link="about" class="bg-yellow-600 hover:bg-yellow-500 text-black font-bold py-3 px-8 rounded-full transition-colors inline-block">Our Story</a>
+                    </div>
+                    <div class="md:w-1/2 bg-yellow-100 p-8 rounded-lg">
+                        <h3 class="text-xl font-bold text-center mb-4">Taste of Brazil</h3>
+                        <div class="relative" style="height: 300px; overflow: hidden; border: 2px solid #f59e0b; border-radius: 8px; background-color: #f3f4f6;">
+                            <img 
+                                id="taste-of-brazil-img"
+                                src="./assets/images/tasteofbrazil.jpg" 
+                                alt="Out of This World Pastries at Jupiter's Pies" 
+                                style="width: 100%; height: 100%; object-fit: cover; display: block;"
+                                onload="console.log('Image loaded successfully!'); this.style.opacity = '1';"
+                                onerror="console.error('Image failed to load'); this.parentElement.innerHTML = '<div class=\'p-4 text-center text-red-600 bg-yellow-100\'>Error loading image. Please check the console for details. Path: ' + this.src + '</div>';"
+                            >
+                            <div id="image-debug" class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white text-xs p-2 hidden">
+                                Image path: ./assets/images/tasteofbrazil.jpg
+                            </div>
+                        </div>
+                        <script>
+                            // Debug script to help troubleshoot image loading
+                            document.addEventListener('DOMContentLoaded', function() {
+                                const img = document.getElementById('taste-of-brazil-img');
+                                const debugInfo = document.getElementById('image-debug');
+                                
+                                // Show debug info on hover
+                                const container = img.parentElement;
+                                container.addEventListener('mouseenter', () => debugInfo.classList.remove('hidden'));
+                                container.addEventListener('mouseleave', () => debugInfo.classList.add('hidden'));
+                                
+                                // Log more debug info
+                                console.log('Image source:', img.src);
+                                console.log('Image complete:', img.complete);
+                                console.log('Image natural dimensions:', img.naturalWidth + 'x' + img.naturalHeight);
+                                
+                                // Check if image loaded
+                                if (img.complete) {
+                                    if (img.naturalWidth === 0) {
+                                        console.error('Image has zero width - likely failed to load');
+                                    }
+                                } else {
+                                    img.onerror = function() {
+                                        console.error('Image failed to load. Full path:', img.src);
+                                        console.error('Image load error details:', this);
+                                    };
+                                }
+                            });
+                        </script>
+                        <p class="text-center mt-4 text-sm text-gray-600">Experience the authentic flavors of Brazil</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+</div>
+
+<!-- Swiper.js CDN - Load before our scripts -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="fixed inset-0 bg-white z-50 hidden transition-all duration-300 ease-in-out transform translate-x-full flex flex-col items-center">
+    <!-- Logo at the top -->
+    <div id="mobile-logo-container" class="w-full border-b border-gray-200" style="padding: 2rem 0 1.5rem 0; display: flex; justify-content: center; align-items: center;">
+        <img id="mobile-logo" src="./assets/images/jupiterslogo.png" alt="Jupiter's Pies" style="height: 280px; width: auto; display: block; max-width: 100%;">
+    </div>
+    
+    <!-- Close button at top right -->
+    <button id="close-mobile-menu" class="absolute top-4 right-4 text-black p-2 hover:bg-gray-100 rounded-full transition-colors">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+    </button>
+    
+    <!-- Centered navigation menu -->
+    <nav class="flex flex-col items-center w-full px-6 pb-4 pt-2 space-y-3 overflow-y-auto flex-grow justify-start mt-4">
+        <a href="#" data-page-link="home" class="text-2xl font-bold text-black hover:text-orange-600 transition-colors py-3 px-8 rounded-lg hover:bg-gray-100 text-center w-full max-w-xs" style="color: #000000 !important;">
+            <span class="flex items-center" style="color: #000000 !important;">
+                <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="color: #000000 !important;">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                </svg>
+                Home
+            </span>
+        </a>
+        <a href="#" data-page-link="menu" class="text-2xl font-bold text-black hover:text-orange-600 transition-colors py-3 px-8 rounded-lg hover:bg-gray-100 text-center w-full max-w-xs" style="color: #000000 !important;">
+            <span class="flex items-center" style="color: #000000 !important;">
+                <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="color: #000000 !important;">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                Menu
+            </span>
+        </a>
+        <a href="#" data-page-link="about" class="text-2xl font-bold text-black hover:text-orange-600 transition-colors py-3 px-8 rounded-lg hover:bg-gray-100 text-center w-full max-w-xs" style="color: #000000 !important;">
+            <span class="flex items-center" style="color: #000000 !important;">
+                <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="color: #000000 !important;">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                Our Story
+            </span>
+        </a>
+        <a href="#" data-page-link="contact" class="text-2xl font-bold text-black hover:text-orange-600 transition-colors py-3 px-8 rounded-lg hover:bg-gray-100 text-center w-full max-w-xs" style="color: #000000 !important;">
+            <span class="flex items-center" style="color: #000000 !important;">
+                <svg class="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="color: #000000 !important;">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                </svg>
+                Contact
+            </span>
+        </a>
+
+    </nav>
+</div>
+
+<script>
+    // Handle dropdown menu interactions and ensure mobile logo styles
+    document.addEventListener('DOMContentLoaded', function() {
+        // Force apply mobile logo styles
+        function applyMobileLogoStyles() {
+            const mobileLogo = document.getElementById('mobile-logo');
+            if (mobileLogo) {
+                mobileLogo.style.height = '140px';
+                mobileLogo.style.width = 'auto';
+                mobileLogo.style.display = 'block';
+                mobileLogo.style.marginTop = '1rem';
+                
+                const logoContainer = mobileLogo.closest('.flex.justify-center');
+                if (logoContainer) {
+                    logoContainer.style.paddingTop = '2rem';
+                    logoContainer.style.paddingBottom = '1.5rem';
+                }
+            }
+        }
+        
+        // Store the mobile menu button in a scoped variable
+        const menuButton = document.getElementById('mobile-menu-button');
+        if (menuButton) {
+            menuButton.addEventListener('click', function() {
+                setTimeout(applyMobileLogoStyles, 300); // After menu animation
+            });
+        }
+        
+        // Apply immediately and after a delay
+        applyMobileLogoStyles();
+        setTimeout(applyMobileLogoStyles, 100);
+        const header = document.getElementById('main-header');
+        const navItems = document.querySelectorAll('.nav-item');
+        
+        // Handle dropdown hover/focus
+        navItems.forEach(item => {
+            const button = item.querySelector('button');
+            if (!button) return;
+            
+            // Toggle expanded state on click for mobile
+            button.addEventListener('click', () => {
+                const isExpanded = header.classList.contains('header-expanded');
+                if (window.innerWidth < 768) { // Mobile view
+                    if (isExpanded) {
+                        header.classList.remove('header-expanded');
+                    } else {
+                        // Close other open dropdowns
+                        document.querySelectorAll('.nav-item').forEach(i => {
+                            if (i !== item) {
+                                const otherButton = i.querySelector('button');
+                                if (otherButton) otherButton.setAttribute('aria-expanded', 'false');
+                            }
+                        });
+                        header.classList.add('header-expanded');
+                        button.setAttribute('aria-expanded', 'true');
+                    }
+                }
+            });
+            
+            // Handle keyboard navigation
+            button.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    button.click();
+                } else if (e.key === 'Escape') {
+                    header.classList.remove('header-expanded');
+                    button.setAttribute('aria-expanded', 'false');
+                }
+            });
+        });
+        
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.nav-item') && !e.target.closest('#mobile-menu-button')) {
+                header.classList.remove('header-expanded');
+                document.querySelectorAll('.nav-item button').forEach(btn => {
+                    btn.setAttribute('aria-expanded', 'false');
+                });
+            }
+        });
+        
+        // Mobile menu toggle with smooth animations
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMobileMenu = document.getElementById('close-mobile-menu');
+        const body = document.body;
+        
+        // Function to open mobile menu
+        function openMobileMenu() {
+            mobileMenu.classList.remove('hidden');
+            // Trigger reflow to enable the transition
+            void mobileMenu.offsetWidth;
+            mobileMenu.classList.remove('translate-x-full');
+            body.style.overflow = 'hidden';
+        }
+        
+        // Function to close mobile menu
+        function closeMobileMenuFunc() {
+            mobileMenu.classList.add('translate-x-full');
+            // Wait for the transition to complete before hiding
+            setTimeout(() => {
+                mobileMenu.classList.add('hidden');
+                body.style.overflow = '';
+            }, 300);
+        }
+        
+        // Event listeners
+        if (mobileMenuButton && mobileMenu && closeMobileMenu) {
+            // Open menu when clicking the hamburger button
+            mobileMenuButton.addEventListener('click', openMobileMenu);
+            
+            // Close menu when clicking the close button
+            closeMobileMenu.addEventListener('click', closeMobileMenuFunc);
+            
+            // Close menu when clicking on a navigation link
+            document.querySelectorAll('#mobile-menu a[data-page-link]').forEach(link => {
+                link.addEventListener('click', closeMobileMenuFunc);
+            });
+            
+            // Close menu when pressing the Escape key
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
+                    closeMobileMenuFunc();
+                }
+            });
+            
+            // Close menu when clicking outside the menu content
+            mobileMenu.addEventListener('click', function(event) {
+                if (event.target === mobileMenu) {
+                    closeMobileMenuFunc();
+                }
+            });
+        }
+        
+        // Sync cart count with mobile menu and dropdown menu
+        function updateMobileCartCount() {
+            const cartCount = document.getElementById('cart-count');
+            const mobileCartCount = document.getElementById('mobile-cart-count');
+            const dropdownCartCount = document.querySelector('.dropdown-menu a[data-page-link="order"] .cart-count');
+            
+            if (cartCount) {
+                const count = cartCount.textContent;
+                
+                // Update mobile cart count
+                if (mobileCartCount) {
+                    mobileCartCount.textContent = count;
+                }
+                
+                // Update dropdown menu cart count
+                if (dropdownCartCount) {
+                    dropdownCartCount.textContent = count;
+                } else {
+                    // If the cart count element doesn't exist in the dropdown, create it
+                    const orderLink = document.querySelector('.dropdown-menu a[data-page-link="order"]');
+                    if (orderLink) {
+                        const countSpan = document.createElement('span');
+                        countSpan.className = 'cart-count ml-2 bg-yellow-500 text-black text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center';
+                        countSpan.textContent = count;
+                        
+                        // Remove existing count if it exists
+                        const existingCount = orderLink.querySelector('.cart-count');
+                        if (existingCount) {
+                            existingCount.remove();
+                        }
+                        
+                        orderLink.appendChild(countSpan);
+                    }
+                }
+            }
+        }
+        
+        // Initial cart count sync
+        updateMobileCartCount();
+        
+        // Listen for cart updates (you might need to modify this based on your cart implementation)
+        // This is a simple example - you might need to adjust it based on your cart system
+        document.addEventListener('cartUpdated', updateMobileCartCount);
+    });
+</script>
+
+<style>
+    /* Smooth transitions for mobile menu */
+    #mobile-menu {
+        transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    }
+    
+    #mobile-menu:not(.hidden) {
+        transform: translateX(0);
+    }
+    
+    #mobile-menu.hidden {
+        display: none;
+    }
+    
+    #mobile-menu.translate-x-full {
+        transform: translateX(100%);
+    }
+    
+    /* Better scrollbar for mobile menu */
+    #mobile-menu nav::-webkit-scrollbar {
+        width: 6px;
+    }
+    
+    #mobile-menu nav::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.1);
+    }
+    
+    #mobile-menu nav::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 3px;
+    }
+    
+    /* Mobile logo styles */
+    #mobile-logo {
+        height: 5rem !important;
+        width: auto !important;
+        margin-top: 0.5rem;
+    }
+</style>
+
+<!-- Modular JavaScript Files -->
+<script src="./js/menuData.js"></script>
+<script src="./js/pageContent.js"></script>
+<script src="./js/cart.js"></script>
+<script src="./js/pageManager.js"></script>
+<script src="./js/navigation.js"></script>
+<script src="./js/app.js"></script>
+
+<style>
+    /* Force mobile logo styles at the end of the document */
+    #mobile-logo {
+        height: 8rem !important;
+        min-height: 8rem !important;
+        width: auto !important;
+        max-width: 100% !important;
+        margin-top: 1rem !important;
+        display: block !important;
+    }
+    #mobile-menu .flex.justify-center {
+        padding-top: 3rem !important;
+        padding-bottom: 1.5rem !important;
+    }
+    #mobile-menu .flex.justify-center img {
+        height: 8rem !important;
+        width: auto !important;
+    }
+</style>
+
+</body>
+</html>
