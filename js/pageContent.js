@@ -4,18 +4,24 @@
  */
 const PageContent = {
     home: `
-        <div id="home-content" class="pb-8">
-            <!-- Açaí Bowls & Superfoods -->
-            <div class="bg-white/90 backdrop-blur-sm rounded-xl p-8 mx-4 mb-12 border border-gray-200 shadow-lg" style="animation: fadeInUp 0.8s ease-out 0.2s both;">
+        <div id="home-content" class="pb-24 sm:pb-16">
+            <!-- Hero Section -->
+            <div class="bg-white/90 backdrop-blur-sm rounded-xl p-6 sm:p-8 mx-4 mb-12 border border-gray-200 shadow-lg" style="animation: fadeInUp 0.8s ease-out 0.2s both;">
                 <div class="max-w-6xl mx-auto">
                     <div class="flex flex-col md:flex-row items-center">
                         <div class="md:w-1/2 md:pr-8 mb-8 md:mb-0" style="animation: fadeInLeft 0.8s ease-out;">
-                            <h2 class="text-4xl font-bold text-gray-900 mb-6">Jupiter Pies<br><span class="text-orange-600">Out of This World Pastries</span></h2>
-                            <p class="text-xl text-gray-700 mb-6">Welcome to Myrtle Beach's premier pastry destination! Our signature pies and fresh pastries are crafted daily with the finest ingredients, delivering heavenly flavors that are truly stellar.</p>
-                            <button class="bg-purple-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-purple-700 transition-colors mt-4" 
-                                    onclick="window.PierogiApp.getNavigationManager().navigateToPage('contact')">
-                                Visit Us
-                            </button>
+                            <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">Jupiter Pies<br><span class="text-orange-600">Out of This World Pastries</span></h2>
+                            <p class="text-lg sm:text-xl text-gray-700 mb-6">Welcome to Myrtle Beach's premier pastry destination! Our signature pies and fresh pastries are crafted daily with the finest ingredients, delivering heavenly flavors that are truly stellar.</p>
+                            <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                                <button class="bg-orange-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-orange-700 transition-colors" 
+                                        onclick="window.PierogiApp.getNavigationManager().navigateToPage('menu')">
+                                    View Menu
+                                </button>
+                                <button class="bg-purple-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-purple-700 transition-colors" 
+                                        onclick="window.PierogiApp.getNavigationManager().navigateToPage('contact')">
+                                    Visit Us
+                                </button>
+                            </div>
                         </div>
                         <div class="md:w-1/2 relative flex items-center justify-center" style="animation: fadeInRight 0.8s ease-out;">
                             <div class="bg-white rounded-xl p-1 border border-gray-200 shadow-2xl w-full">
